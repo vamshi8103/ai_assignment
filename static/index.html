@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation Evaluation Benchmark</title>
+    <meta name="description"
+        content="A production-ready benchmark system that scores conversations on 300+ facets covering linguistic quality, pragmatics, safety and emotion.">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-logo">
+
+            <h1>Conversation Evaluator</h1>
+        </div>
+        <div class="header-stats" id="headerStats">
+            <div class="stat-badge">
+                <span class="num" id="totalFacets">—</span> Facets
+            </div>
+            <div class="stat-badge">
+                <span class="num" id="totalCategories">—</span> Categories
+            </div>
+            <div class="stat-badge">
+                <span>Score Scale: </span><span class="num">1–5</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+
+        <!-- ── Input Panel ── -->
+        <section class="card">
+            <div class="card-header">
+                <h2>💬 Conversation Input</h2>
+            </div>
+            <div class="card-body">
+
+
+                <!-- Turn List -->
+                <div class="turn-list" id="turnList">
+                    <!-- Dynamic turns go here -->
+                </div>
+
+                <button class="btn btn-secondary" onclick="addTurn()">
+                    Add Turn
+                </button>
+                <button class="btn btn-primary" id="evalBtn" onclick="runEvaluation()">
+                    <span class="btn-text">Evaluate</span>
+                    <div class="spinner"></div>
+                </button>
+            </div>
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill"></div>
+            </div>
+            </div>
+        </section>
+
+        <!-- ── Stats Panel ── -->
+        <section class="card">
+            <div class="card-header">
+                <h2>📊 Category Overview</h2>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+                <div class="summary-grid" id="summaryGrid">
+                    <div style="color: var(--text-muted); text-align: center; grid-column: 1/-1; padding: 40px 0;">
+                        Submit a conversation to see results
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Detailed Results ── -->
+        <section class="card results-fullwidth results-panel" id="resultsPanel">
+            <div class="card-header">
+                <h2>📋 Detailed Facet Scores</h2>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-secondary" onclick="exportJSON()"
+                        style="font-size: 0.8rem; padding: 6px 14px;">
+                        📥 Export JSON
+                    </button>
+                    <button class="btn btn-secondary" onclick="expandAll()"
+                        style="font-size: 0.8rem; padding: 6px 14px;">
+                        ↕ Toggle All
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Turn tabs -->
+                <div class="turn-tabs" id="turnTabs"></div>
+
+                <!-- Scores by category -->
+                <div id="scoresContainer"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/static/app.js"></script>
+
+</body>
+
+</html>
