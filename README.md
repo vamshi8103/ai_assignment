@@ -71,5 +71,4 @@ Edit `.env` to configure the system:
 | `MODEL_NAME` | Model ID for inference |
 | `FACET_BATCH_SIZE` | Facets per LLM call (adjust for context window) |
 
-## License
-MIT License
+
